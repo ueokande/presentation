@@ -9,7 +9,7 @@
   </head>
   <body>
     <% sitemap.resources.select{ |r| r.parent && r.parent.page_id == 'index' }.each do |page| %>
-      <%= link_to page.data.title, page.path %>
+      <%= link_to page.path, page.path %>
     <% end %>
   </body>
 </html>
