@@ -1,3 +1,4 @@
+require 'json'
 require 'middleman-core/renderers/redcarpet'
 require 'active_support/core_ext/module/attribute_accessors'
 
@@ -50,6 +51,14 @@ module Middleman
 
     class MiddlemanRedcarpetPresentationHTML < MiddlemanRedcarpetHTML
 
+      def preprocess(full_document)
+        output = ""
+        full_document.each_line do |line|
+          output += /\A---\s*{.*}\Z/.match(line) ? meta_hr(line) : line
+        end
+        output
+      end
+
       def postprocess(full_document)
         doc = Nokogiri::HTML::DocumentFragment.parse(full_document)
         current_page = nil
@@ -63,6 +72,10 @@ module Middleman
             current_page = new_page_element(doc)
             doc.add_child(current_page)
             ele.remove
+          elsif ele.class == Nokogiri::XML::Comment
+            attrs = JSON.parse(ele.content)
+            attrs.each{ |k,v| current_page[k] = v }
+            ele.remove
           else
             current_page.add_child(ele)
           end
@@ -72,6 +85,13 @@ module Middleman
 
       def new_page_element(doc)
         Nokogiri::XML::Node.new("section", doc)
+      end
+
+      private
+
+      def meta_hr(line)
+        attrs = line.gsub(/\A---/, '')
+        "---\n<!-- #{attrs} -->\n"
       end
 
     end

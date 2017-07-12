@@ -2,9 +2,17 @@
 title: これはマークダウン
 ---
 
+--- { "class": "title" }
 # これはマークダウン
 
 Ueokande
+
+--- { "class": "outline" }
+
+# Outline
+
+- Why?
+- How
 
 # Why?
 
@@ -12,6 +20,8 @@ Ueokande
 - バージョン管理したい
 - Vim使いたい
 - マルチプラットフォーム
+
+---
 
 # How
 
