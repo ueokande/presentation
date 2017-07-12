@@ -54,16 +54,18 @@ module Middleman
         doc = Nokogiri::HTML::DocumentFragment.parse(full_document)
         current_page = nil
         children = doc.children
-        if children.first && children.first.name != 'h1'
+        if children.first && children.first.name != 'hr'
           current_page = new_page_element(doc)
           doc.add_child(current_page)
         end
         children.each do |ele|
-          if ele.name == 'h1'
+          if ele.name == 'hr'
             current_page = new_page_element(doc)
             doc.add_child(current_page)
+            ele.remove
+          else
+            current_page.add_child(ele)
           end
-          current_page.add_child(ele)
         end
         doc.to_html
       end
