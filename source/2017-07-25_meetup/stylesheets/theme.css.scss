@@ -1,0 +1,255 @@
+* {
+  margin:0;
+  padding:0
+}
+
+html {
+  font-size:25pt;
+  font-family: "mplus-1p";
+}
+
+body {
+  line-height: 2rem;
+  background-color: black;
+}
+
+ul {
+  list-style:none;
+  margin:0px 28px 32px;
+
+  li {
+    margin: 1rem 0;
+
+    &:before {
+      content:"";
+      width:.5rem;
+      height:.5rem;
+      display:inline-block;
+      background-color:#f7354f;
+      border-radius:50%;
+      margin-bottom:0.2ex;
+      margin-left:-24px;
+      margin-right:.5rem;
+    }
+  }
+
+  li ul li {
+    &:before {
+      content:"";
+      background-color:#E78647;
+      border-radius:0;
+      width:.4rem;
+      height:.4rem;
+    }
+  }
+}
+
+ol {
+  margin:20px 40px 50px;
+
+  li {
+    margin-top:20px;
+    margin-left:-12px;
+    margin-right:.5rem;
+  }
+}
+
+hr {
+  border:none;
+  border-top:1px solid #3a3a38;
+  margin:0 0 32px
+}
+
+section {
+  padding: 2rem 2rem;
+  overflow:hidden;
+  box-sizing:border-box;
+  background-color:#f9f6eb;
+  color: #313A32;
+
+  h1 {
+    font-size:1.8rem;
+    font-weight:bold;
+    margin-bottom:24px;
+    margin:0 0 2rem;
+    font-family: "mplus-1p-bold";
+    font-weight: normal;
+
+    sub {
+      vertical-align: baseline;
+      font-size: inherit;
+      font-family: "mplus-1p-regular";
+    }
+  }
+
+  h2 {
+    font-size:1.2rem;
+    margin:16px 0 8px;
+    line-height: 1rem;
+  }
+}
+
+section.title {
+  background-color: #4F4A47;
+  color: white;
+  
+  h1 {
+    font-size: 2rem;
+    line-height: 2rem;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    margin-top:0;
+    font-size: 1rem;
+    line-height: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  p {
+    text-align: right;
+    line-height: 1.5rem;
+  }
+
+}
+
+section.section {
+  background-color: #4F4A47;
+  color: white;
+  
+  h1 {
+    font-size: 2rem;
+    line-height: 2rem;
+    margin-top: 7rem;
+    text-align: center;
+  }
+
+  h2 {
+    margin-top:0;
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+
+  p {
+    text-align: right;
+    line-height: 1rem;
+  }
+
+}
+
+.pagenum {
+  position:absolute;
+  font-size:21pt;
+  top:2%;
+  left:95%
+}
+
+section.cybozucom {
+  background-image: url("../images/cybozucom.png");
+  background-size: contain;
+  background-position: center 0;
+  background-repeat: no-repeat;
+  background-color: white;
+  padding: 0;
+
+  h1 {
+    position: absolute;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .8);
+    padding: .8rem;
+    bottom: 1.8rem;
+    box-sizing: border-box;
+    color: white;
+    margin: 0;
+  }
+}
+
+section.damm {
+  background-image: url("../images/trying-to-crawl-here.jpg");
+  background-size: cover;
+  padding: 2rem;
+
+  &:before {
+    content:none
+  }
+
+  h1 {
+    font-size: 3rem;
+    text-shadow: 0 0 16px black;
+    font-family: mplus-1p-heavy;
+    color: white;
+    line-height: 3rem;
+  }
+
+  p {
+    background-color: black;
+    color: white;
+    font-weight: 100;
+    font-size: 0.6rem;
+    text-align: right;
+    line-height: 1.2rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: .5rem;
+  }
+}
+
+.balloon-up-right {
+  background-color: lightgray;
+  display: inline-block;
+  line-height: 1rem;
+  padding: 16px;
+  border-radius: 8px;
+  position: absolute;
+
+  &:after {
+    content: "";
+    display: block;
+    width: 0;
+    position: absolute;
+    top: -24px;
+    left: auto;
+    bottom: auto;
+    right: 50px;
+    border-style: solid;
+    border-color: lightgray transparent;
+    border-width: 24px 24px 0 0;
+    border-color: transparent lightgray;
+  }
+}
+
+.balloon-up-left {
+  background-color: lightgray;
+  display: inline-block;
+  line-height: 1rem;
+  padding: 16px;
+  border-radius: 8px;
+  position: absolute;
+
+  &:after {
+    content: "";
+    display: block;
+    width: 0;
+    position: absolute;
+    top: -24px;
+    left: 50px;
+    bottom: auto;
+    right: auto;
+    border-style: solid;
+    border-color: lightgray transparent;
+    border-width: 24px 0 0 24px;
+    border-color: transparent lightgray;
+  }
+}
+
+.pagenum {
+  position:absolute;
+  font-size:21pt;
+  top:2%;
+  left:95%
+}
+
