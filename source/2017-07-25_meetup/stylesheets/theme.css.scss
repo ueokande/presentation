@@ -9,24 +9,29 @@ html {
 }
 
 body {
-  background-color:black;
   line-height: 1.8rem;
+  background-color: black;
 }
 
 h1 {
   font-size:40pt;
   font-weight:bold;
-  color:#3a3a38;
   margin-bottom:24px;
   margin:0 0 32px;
   font-family: "mplus-1p-bold";
   font-weight: normal;
+
+  sub {
+    vertical-align: baseline;
+    font-size: inherit;
+    font-family: "mplus-1p-regular";
+  }
 }
 
 h2 {
   font-size:28pt;
-  color:#1393aa;
   margin:16px 0 8px;
+  line-height: 1rem;
 }
 
 ul {
@@ -51,7 +56,7 @@ ul {
 }
 
 ol {
-  margin:20px 28px 50px;
+  margin:20px 40px 50px;
 
   li {
     margin-top:20px;
@@ -65,42 +70,75 @@ hr {
 }
 
 section {
-  padding:8px 64px;
-  background-color:#cbd3c5;
+  padding: 24px 64px;
   overflow:hidden;
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
   box-sizing:border-box;
+  background-color:#f9f6eb;
+  color: #313A32;
+}
 
-  &:before {
-    content:"";
-    width:96%;
-    height:87%;
-    position:absolute;
-    border-radius:24px;
-    margin:0;
-    left:2%;
-    top:80px;
-    z-index:-1;
-    background-color:#f9f6eb;
-    display:block
+section.title {
+  background-color: #4F4A47;
+  color: white;
+  
+  h1 {
+    font-size: 2rem;
+    line-height: 2rem;
+    margin-top:20%;
+    margin-bottom:0
+  }
+
+  h2 {
+    margin-top:0;
+    font-size: 1rem;
+  }
+
+  p {
+    text-align: right;
   }
 
 }
 
-section.title:before {
-  content:none
+.pagenum {
+  position:absolute;
+  font-size:21pt;
+  top:2%;
+  left:95%
 }
 
-section.title h1 {
-  font-size:300%;
-  margin-top:20%;
-  margin-bottom:0
-}
+section.damm {
+  background-image: url("../images/sleeping_worker.jpg");
+  background-size: cover;
+  padding: 0;
 
-section.title h2 {
-  margin-top:0;
-  color:#3a3a38
+  &:before {
+    content:none
+  }
+
+  h1 {
+    margin: 2rem;
+    font-size: 3rem;
+    text-shadow: 0 0 16px black;
+    font-family: mplus-1p-heavy;
+    color: white;
+    line-height: 3rem;
+  }
+
+  p {
+    background-color: black;
+    color: white;
+    font-weight: 100;
+    font-size: 0.6rem;
+    text-align: right;
+    line-height: 1.2rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: .5rem;
+  }
 }
 
 .pagenum {
