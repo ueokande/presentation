@@ -15,3 +15,7 @@ ready do
     page page.path, layout: layout
   end
 end
+
+configure :development do
+  activate :livereload
+end
