@@ -28,60 +28,66 @@ Cybozu Inc.
 ---
 # 目次
 
-- 従来のログ基盤と限界
+- これまでのログ基盤の限界
+- cybozu.comとこれまでのログ基盤
 - ログ基盤のゼロからの刷新
 - 新しいログ基盤のこれから
 
---- { "class": "title" }
-# 従来のログ基盤と限界
+--- { "class": "section" }
+# cybozu.comとこれまでのログ基盤
+
+--- { "class": "cybozucom" }
+# cybozu.com
 
 ---
 # cybozu.comとは
 
 - 2011年にスタートした、企業向けクラウドサービス
-- 契約者数 17,000社以上
-- ユーザ数65万人以上
-
-<img style='float:right; width: 640px; margin-top: -180px' src="images/cybozucom.png">
+- 契約者数 19,000社以上
+- ユーザ数70万人以上
 
 ---
-# cybozu.comのインフラ事情
+# cybozu.comのインフラ
 
 - 自社製データセンター
-- ホスト数(実機 + VM): **1000+**
+- ホスト数(実機 + VM): <span style='font-weight:bold; font-size:2rem'>1000+</span>
 - ログ量
   <span style='font-weight: bold'><span style='font-size:2rem'>20億</span> 行/day</span>,
   <span style='font-weight: bold'><span style='font-size:2rem'>800</span> GB/day</span> くらい  
-  （秒間 23,000行 くらい）
+  （毎秒平均 23,000行 くらい）
 
 ---
 # これまでのログ基盤
 
 1. ローテートされたログをtar化
-  - ログファイルは1分間隔でlogrotateする
 2. SSHでtarを転送
 3. 転送できたログを削除する
 
 ---
 # 何が問題か？
 
-## スケールできない
-
-- 転送量がログ量に追いつきつつあったが、容易にスケールできない
-
-## 冗長構成できない
-
+## ログ量増加に追いつかない
+- 転送量がログ量に追いつきつつあったが、スケールできない
 - ログ転送システムがSPOF
-- ログが転送されないと、ディスク使用量が肥大化する
 
-## アクセスログを可視化できていない
-
-- ユーザの動向がビジネスに利用できていない
+## ログを有効活用できない
+- 可視化・解析できる仕組みがない
+- そもそも新しい仕組みも導入しにくい
 
 --- { "class": "damm" }
 # ちくちょう。<br>刷新だ！
 
 sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228431@N06/11285432175</u>
+
+--- { "class": "section" }
+# ログ基盤のゼロからの刷新
+
+---
+# なぜログ基盤が必要か？
+
+1. ログを保存する
+2. アプリケーション・インフラの障害対応
+3. 製品の改善につなげる
 
 ---
 # 新ログ基盤の要件
@@ -90,45 +96,42 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 
 - ログを取りこぼすことなく集める
 
-## スケーラビリティ
-
-- ログの量が増えても安全な設計
-
 ## 信頼性
 
-- 単一障害点を取り除いて、ログの転送が止まらないように
+- どこかで障害が発生しても、全体の転送が止まらない
+
+## ログの長期保存
+
+- 10年間はログを保存できる仕組み
 
 ---
 # 新ログ基盤アーキテクチャ
 
 - 各ホストはKafkaクラスタに対してログを吐き出す
-- Kafkaにはログの情報とメタデータをProtocol Buffersでエンコード
+- Kafkaからぞれぞれのサービスがログを利用
 
-![アーキテクチャ](images/architecture.png)
+<img style='display:block; width: 80%; height:auto; margin: auto' src='images/architecture.png'>
 
 ---
 # Apache Kafkaとは
 
 - pub/sub型の分散メッセージングシステム
 - LinkedInが開発してOSS化した
-- いまはApacheトッププロジェクトで配布
+- Twitter、Netflix、LINEなどの採用実績
 
-<div style='float:right; width: 512px; height: 256px; background-position-y: center; background-size: cover;background-image: url(images/apache-kafka.png)'>
-
-
-</div>
+<img style='position:absolute; width:6rem; height:auto; right:1rem; top:1rem' src="images/apache-kafka.png">
 
 ---
 # Apache Kafkaを使う理由
 
 ## 分散メッセージングサービス
 
-- Broker間でレプリケーションするので、Brokerが死んでも大丈夫
-- クラスタにBrokerを追加することで容易にスケールできる
+- Brokerを追加することで容易にスケール
+- Broker間でレプリケーション
 
 ## pub/sub型
 
-- ログを書く側と読む側が独自のタイミングで読み書きする
+- 入力と出力が独自のタイミングでを読み書きする
 - pub/sub間のスループットやタイミングを考えなくてもよい
 
 ---
@@ -136,43 +139,45 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 
 ## 転送エージェント
 
-<div style='float: right; margin-left: 32px; min-width: 480px; height: 400px; background-image: url(images/architecture.png); background-size: 150%; box-sizing: border-box;'></div>
+- ログファイルの更新を監視してKafkaに送る
+- 転送が完了したログはディスクから削除
 
-- 自前で転送エージェントを実装
-- inotifyでログファイルの更新を監視して逐一送る
+<div style='float:right; margin-left:32px; min-width:50%; background-repeat:no-repeat; height:100%; background-image: url(images/architecture.png); background-size: 150%; box-sizing: border-box;'></div>
 
 ---
 # Kafka clusterから各サービス
 
 ## HBase
 
-- ログをHadoop上に永続的に保存するために使用
-
-<div style='float: right; margin-left:32px; min-width: 480px; height: 400px; background-position-x: 100%;background-image: url(images/architecture.png); background-size: 150%; box-sizing: border-box;'></div>
+- ログをHadoop上に長期保存する
 
 ## Hive
 
-- ユーザの動向をクエリで検索・解析するためにアクセスログを入れる
+<div style='float:right; margin-left:32px; min-width:50%; background-repeat:no-repeat; height:100%; background-position-x:100%; background-image:url(images/architecture.png); background-size: 150%; box-sizing: border-box;'></div>
 
-## Graylog (試験構築中)
+- ユーザの動向をクエリで検索・解析する
 
-- ログの検索、監視目的。ロールベースでいい感じに権限管理できる
+## Graylog
+
+- ログの検索、監視
 
 ---
 # At least once
 
 - システム全体で、ログを取りこぼすことなく配送
-- マシンが**突然の死**を遂げても、不整合やデータロスが発生しない
+- どこかのノードが**突然の死**を遂げても、ログの不整合やデータロスが発生しない
+- ストレージ・HDFS上のファイル操作はアトミックに
 
 ---
-# At least once <sub>| 各ホストからkafka cluster</sub>
+# At least once <sub>| 各ホストからKafka</sub>
 
-- fluentdだと満たせないので、自前で転送エージェントを実装
-- どこまでログを送ったかを記録
-
+- 当初はfluentdでKafkaへの転送で構築していた
+- fluentdはat least onceを満たせないことが判明
+- 自前で自作エージェントを実装
+- 結局自分で
 
 ---
-# At least once <sub>| kafka clusterから各サービス</sub>
+# At least once <sub>| Kafkaからの転送</sub>
 
 ## Kafka -> HBase
 
@@ -182,44 +187,44 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 ## Kafka -> Hive
 
 ---
-# At least once <sub>| 長いログへの対応</sub>
+# At least once <sub>| 長いログの対応</sub>
 
 - Kafkaのレコード長には上限があるが、ログの長さは予想できない
 - MySQLのスローログでは、1行が10MBを超えるケースもある
 - Kafkaのレコードに、断片化されたログかのフラグを付与
-- Kafkaから取り出すとき、若干大変...
 
 ---
-# スケーラビリティ
+# 信頼性とログの長期保存
 
-- Kafka clusterは、Brokerノードを増やすことでスケールできる
-- HBase、Hiveも、Hadoop上のサービスなので、スケールしやすい
-- 新たにログが必要な要件が増えた時、Kafka Consumerも増やせる
+## 信頼性
+
+- Kafkaのノードが死んでも、全体の転送は止まらない
+- ログ量が増えたら、Kafkaノードを増やしてスケール
+
+## ログの長期保存
+
+- ログはHadoop上に長期保存
+- 容量が増えたらHadoopクラスタをスケールするだけでOK
 
 ---
-# ログの解析など
+# 苦労話 <sub>| 転送遅延</sub>
 
-Kafka -> Airpalの話
+<img style='float:right; width:12rem; margin-left:1rem' src=images/kafka-definitive-guide.jpg>
+
+- ある日、Kafkaからの転送が大きく遅延した
+- 幸い本番環境と同じ環境を開発環境に構成してたために気付けた
+- Kafkaのパラメータチューニングして解決
 
 ---
-# 苦労話 <sub>| journaldの信頼性やばい</sub>
+# 苦労話 <sub>| journaldに悩まされる</sub>
 
-- アプリケーションのログをjournaldに集めるという計画もあった
-  - journald: systemdのログデーモン
+- ホストのすべてのログをjournaldに集める計画もあった
 - 社内でjournaldを運用していたらいろいろ問題が
-    - Disk Full時にjournaldが死亡する
     - 長いログの行が勝手に分割される
+    - Disk Full時にjournaldが死亡する
 - 結局ファイル最強だった
 
----
-# 苦労話 <sub>| 開発環境に救われた</sub>
-
-- Kafka clusterを一時的に停止してみたら、HBaseまでの転送が大きく遅延した
-- 原因はトピックの長さが違うから
-- 開発環境に本番環境と同じ構成のKafka、Hadoopクラスタを構築していたから気づけた。
-- 頑張ってkafkaのパラメータチューニングして解決
-
---- { "class": "title" }
+--- { "class": "section" }
 # 新しいログ基盤のこれから
 
 ---
