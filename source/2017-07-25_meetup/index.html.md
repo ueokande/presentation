@@ -195,11 +195,11 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 ---
 # At least once <sub>| Kafkaへのログ転送</sub>
 
-- 初めはfluentdでKafkaへの転送で構築していたが、at least onceを満たせないことが判明
+- 初めはFluentdでKafkaへの転送で構築していたが、at least onceを満たせないことが判明
 
-<div style='float:right; margin-left:32px; min-width:50%; background-repeat:no-repeat; height:100%; background-image: url(images/architecture.png); background-size: 150%; box-sizing: border-box;'></div>
+<div style='float:right; margin-left:24px; min-width:45%; background-repeat:no-repeat; height:100%; background-image: url(images/architecture.png); background-size: 150%; box-sizing: border-box;'></div>
 
-- 自前で転送エージェントを実装
+- 自前でat least onceを満たす転送エージェントを実装
     - 状態はatomicに更新
     - バックプレッシャー
 
@@ -207,9 +207,9 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 # At least once <sub>| Kafkaからの転送</sub>
 
 - HiveやHBaseへの経路は冗長構成
-- HDFS上のファイル操作もatomicに
+- HDFS上のファイル操作もatomicに更新する必要がある
 
-<div style='float:right; margin-left:32px; min-width:50%; background-repeat:no-repeat; height:100%; background-position-x:100%; background-image:url(images/architecture.png); background-size: 150%; box-sizing: border-box;'></div>
+<div style='float:right; margin-left:32px; min-width:45%; background-repeat:no-repeat; height:100%; background-position-x:100%; background-image:url(images/architecture.png); background-size: 150%; box-sizing: border-box;'></div>
 
 ---
 # At least once <sub>| 長いログの対応</sub>
@@ -261,8 +261,6 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 ## 可視化・解析
 - Redashでいい感じにHiveのクエリを可視化
 - ページビューとユーザデータを組合せて製品改善に役立てる
-
-## Milstone3的な話
 
 ---
 # まとめ
