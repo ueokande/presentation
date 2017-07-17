@@ -129,6 +129,7 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 - Twitter、Netflix、LINEなどの採用実績
 
 <img style='position:absolute; width:6rem; height:auto; right:1rem; top:1rem' src="images/apache-kafka.png">
+<img style='width:10rem; height:auto; display:block; margin:auto' src="images/kafka_diagram.png">
 
 ---
 # Apache Kafkaを使う理由
