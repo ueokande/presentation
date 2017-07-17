@@ -8,9 +8,10 @@ title: サイボウズのサービスを支えるログ基盤 - ゼロからの�
 
 ## ゼロからの刷新とこれから
 
-Cybozu Inc.
+Cybozu Meetup #6, 2017-07-25
 
-@ueokande
+@ueokande  
+Cybozu Inc.
 
 ---
 # アジェンダ
@@ -29,15 +30,14 @@ Cybozu Inc.
 ---
 # 目次
 
-- これまでのログ基盤の限界
-- cybozu.comとこれまでのログ基盤
+- cybozu.comのこれまでのログ基盤
 - ログ基盤のゼロからの刷新
 - 新しいログ基盤のこれから
 
 ---
 : { "class": "section" }
 
-# cybozu.comとこれまでのログ基盤
+# cybozu.comの<br>これまでのログ基盤
 
 ---
 : { "class": "cybozucom" }
@@ -50,34 +50,37 @@ Cybozu Inc.
 - 2011年にスタートした、企業向けクラウドサービス
 - 契約者数 19,000社以上
 - ユーザ数70万人以上
+- リクエスト数1.7億/day
 
 ---
-# cybozu.comのインフラ
+# cybozu.comを支えるインフラ
 
 - 自社製データセンター
-- ホスト数(実機 + VM): <span style='font-weight:bold; font-size:2rem'>1000+</span>
+- ホスト数（実機 + VM）: 1000程度
 - ログ量
   <span style='font-weight: bold'><span style='font-size:2rem'>20億</span> 行/day</span>,
   <span style='font-weight: bold'><span style='font-size:2rem'>800</span> GB/day</span> くらい  
   （毎秒平均 23,000行 くらい）
 
 ---
-# これまでのログ基盤
+# これまでのcybozu.comのログ基盤
 
-1. ローテートされたログをtar化
-2. SSHでtarを転送
-3. 転送できたログを削除する
+1. ログを毎分ローテート
+2. ローテートされたログをtarに固める
+3. SSHでtarを転送
+4. 転送が完了したログをホストから削除
 
 ---
-# 何が問題か？
+# そろそろ限界...
 
-## ログ量増加に追いつかない
-- 転送量がログ量に追いつきつつあったが、スケールできない
-- ログ転送システムがSPOF
+## ログ量が帯域ぎりぎり
+- スケールしたいけどできない
 
-## ログを有効活用できない
-- 可視化・解析できる仕組みがない
-- そもそも新しい仕組みも導入しにくい
+## 転送システムがSPOF
+- うっかりログ転送が止まるとホストがDisk Fullに
+
+## ログを活用できていない
+- ビジネス用途に可視化・解析できていない、新しい仕組みも導入しにくい
 
 ---
 : { "class": "damm" }
@@ -92,13 +95,6 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 # ログ基盤のゼロからの刷新
 
 ---
-# なぜログ基盤が必要か？
-
-1. ログを保存する
-2. アプリケーション・インフラの障害対応
-3. 製品の改善につなげる
-
----
 # 新ログ基盤の要件
 
 ## at least once
@@ -109,9 +105,9 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 
 - どこかで障害が発生しても、全体の転送が止まらない
 
-## ログの長期保存
+## スケーラビリティ
 
-- 10年間はログを保存できる仕組み
+- ログを活用できるサービスを容易に導入できる
 
 ---
 # 新ログ基盤アーキテクチャ
@@ -144,12 +140,10 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 - pub/sub間のスループットやタイミングを考えなくてもよい
 
 ---
-# 各ホストからKafka cluster
-
-## 転送エージェント
+# 各ホストからKafkaへの転送
 
 - ログファイルの更新を監視してKafkaに送る
-- 転送が完了したログはディスクから削除
+- ローテートされて転送が完了したログはディスクから削除
 
 <div style='float:right; margin-left:32px; min-width:50%; background-repeat:no-repeat; height:100%; background-image: url(images/architecture.png); background-size: 150%; box-sizing: border-box;'></div>
 
@@ -171,49 +165,67 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 - ログの検索、監視
 
 ---
+# 新ログ基盤の要件
+
+## at least once
+
+- ログを取りこぼすことなく集める
+
+## 信頼性
+
+- どこかで障害が発生しても、全体の転送が止まらない
+
+## スケーラビリティ
+
+- ログを活用できるサービスを容易に導入できる
+
+
+---
 # At least once
 
 - システム全体で、ログを取りこぼすことなく配送
-- どこかのノードが**突然の死**を遂げても、ログの不整合やデータロスが発生しない
-- ストレージ・HDFS上のファイル操作はアトミックに
+- どこかのホストが**突然の死**を遂げても、ログのデータロスが発生しない
+- ログの重複は許す（≠ exactly once）
 
 ---
 # At least once <sub>| 各ホストからKafka</sub>
 
-- 当初はfluentdでKafkaへの転送で構築していた
-- fluentdはat least onceを満たせないことが判明
-- 自前で自作エージェントを実装
-- 結局自分で
+- 初めはfluentdでKafkaへの転送で構築していたが、at least onceを満たせないことが判明
+
+<div style='float:right; margin-left:32px; min-width:50%; background-repeat:no-repeat; height:100%; background-image: url(images/architecture.png); background-size: 150%; box-sizing: border-box;'></div>
+
+- 自前で転送エージェントを実装
+    - 状態はatomicに更新
+    - バックプレッシャー
 
 ---
 # At least once <sub>| Kafkaからの転送</sub>
 
-## Kafka -> HBase
+- データの処理が終わったoffsetをKafkaにcommit
+- HDFS上のファイル操作もatomicに
 
-- データの処理が終わったoffsetをcommitする
-- auto commitを無効化
-
-## Kafka -> Hive
+<div style='float:right; margin-left:32px; min-width:50%; background-repeat:no-repeat; height:100%; background-position-x:100%; background-image:url(images/architecture.png); background-size: 150%; box-sizing: border-box;'></div>
 
 ---
 # At least once <sub>| 長いログの対応</sub>
 
-- Kafkaのレコード長には上限があるが、ログの長さは予想できない
+- Kafkaのレコード長には上限がある
 - MySQLのスローログでは、1行が10MBを超えるケースもある
 - Kafkaのレコードに、断片化されたログかのフラグを付与
+- Kafkaからログを取り出す時、再び結合
 
 ---
-# 信頼性とログの長期保存
+# 信頼性とスケーラビリティ
 
 ## 信頼性
 
 - Kafkaのノードが死んでも、全体の転送は止まらない
 - ログ量が増えたら、Kafkaノードを増やしてスケール
 
-## ログの長期保存
+## スケーラビリティ
 
-- ログはHadoop上に長期保存
-- 容量が増えたらHadoopクラスタをスケールするだけでOK
+- Kafkaのノードが死んでも、全体の転送は止まらない
+- ログ量が増えたら、Kafkaノードを増やしてスケール
 
 ---
 # 苦労話 <sub>| 転送遅延</sub>
@@ -228,7 +240,7 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 # 苦労話 <sub>| journaldに悩まされる</sub>
 
 - ホストのすべてのログをjournaldに集める計画もあった
-- 社内でjournaldを運用していたらいろいろ問題が
+- 社内でjournaldを導入してみたらいろいろ問題が
     - 長いログの行が勝手に分割される
     - Disk Full時にjournaldが死亡する
 - 結局ファイル最強だった
@@ -241,10 +253,15 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 ---
 # これからのログ基盤
 
-- ユーザデータとの連携
-- 可視化・解析
+## 可視化・解析
+- Redashでいい感じにHiveのクエリを可視化
+- ページビューとユーザデータを組合せて製品改善に役立てる
+
+## Milstone3的な話
 
 ---
 # まとめ
 
-- サイボウズのログ基盤が生まれ変わったよ
+- サイボウズのログ基盤が新しくなりました
+- Kafka導入で「at least once」「信頼性」「スケーラビリティ」を実現
+- これからもログをどんどん、活用していきます

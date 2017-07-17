@@ -18,7 +18,7 @@ ul {
   margin:0px 28px 32px;
 
   li {
-    margin: .5rem 0;
+    margin: 1rem 0;
 
     &:before {
       content:"";
@@ -51,7 +51,7 @@ hr {
 }
 
 section {
-  padding: 1rem 2rem;
+  padding: 2rem 2rem;
   overflow:hidden;
   box-sizing:border-box;
   background-color:#f9f6eb;
@@ -61,7 +61,7 @@ section {
     font-size:1.8rem;
     font-weight:bold;
     margin-bottom:24px;
-    margin:0 0 32px;
+    margin:0 0 2rem;
     font-family: "mplus-1p-bold";
     font-weight: normal;
 
@@ -98,7 +98,7 @@ section.title {
 
   p {
     text-align: right;
-    line-height: 1rem;
+    line-height: 1.5rem;
   }
 
 }
