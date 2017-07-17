@@ -78,6 +78,8 @@ module Middleman
               meta.attributes.each{ |k,v| current_page[k] = v }
               meta.remove
               ele.remove if ele.children.length == 0
+            else
+              current_page.add_child(ele)
             end
           else
             current_page.add_child(ele)
