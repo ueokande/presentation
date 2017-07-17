@@ -2,8 +2,9 @@
 title: サイボウズのサービスを支えるログ基盤 - ゼロからの刷新とこれから
 ---
 
---- { "class": "title" }
+---
 # サイボウズのサービスを<br>支えるログ基盤
+: { "class": "title" }
 
 ## ゼロからの刷新とこれから
 
@@ -33,10 +34,14 @@ Cybozu Inc.
 - ログ基盤のゼロからの刷新
 - 新しいログ基盤のこれから
 
---- { "class": "section" }
+---
+: { "class": "section" }
+
 # cybozu.comとこれまでのログ基盤
 
---- { "class": "cybozucom" }
+---
+: { "class": "cybozucom" }
+
 # cybozu.com
 
 ---
@@ -74,12 +79,16 @@ Cybozu Inc.
 - 可視化・解析できる仕組みがない
 - そもそも新しい仕組みも導入しにくい
 
---- { "class": "damm" }
+---
+: { "class": "damm" }
+
 # ちくちょう。<br>刷新だ！
 
 sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228431@N06/11285432175</u>
 
---- { "class": "section" }
+---
+: { "class": "section" }
+
 # ログ基盤のゼロからの刷新
 
 ---
@@ -224,7 +233,9 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
     - Disk Full時にjournaldが死亡する
 - 結局ファイル最強だった
 
---- { "class": "section" }
+---
+: { "class": "section" }
+
 # 新しいログ基盤のこれから
 
 ---
