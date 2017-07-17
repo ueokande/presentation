@@ -10,14 +10,9 @@ title: サイボウズのサービスを支えるログ基盤 - ゼロからの�
 
 Cybozu Meetup #6, 2017-07-25
 
-@ueokande  
+@ueokande
+
 Cybozu Inc.
-
----
-# アジェンダ
-
-- サイボウズはクラウド6年目
-- サイボウズのログ基盤が、生まれ変わりました
 
 ---
 # whois
@@ -63,11 +58,20 @@ Cybozu Inc.
   （毎秒平均 23,000行 くらい）
 
 ---
+# なぜログが重要か
+
+- ログはWebサービスの健康状態を示す
+    - 障害対応の手がかり
+- サービスの改善に役立てる
+    - 性能検証
+    - ユーザの行動をビジネスに利用する
+
+---
 # これまでのcybozu.comのログ基盤
 
 1. ログを毎分ローテート
 2. ローテートされたログをtarに固める
-3. SSHでtarを転送
+3. SSHでtarをストレージサーバーに転送
 4. 転送が完了したログをホストから削除
 
 ---
@@ -80,7 +84,7 @@ Cybozu Inc.
 - うっかりログ転送が止まるとホストがDisk Fullに
 
 ## ログを活用できていない
-- ビジネス用途に可視化・解析できていない、新しい仕組みも導入しにくい
+- 可視化・解析できていない、新しい仕組みも導入しにくい
 
 ---
 : { "class": "damm" }
@@ -188,7 +192,7 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 - ログの重複は許す（≠ exactly once）
 
 ---
-# At least once <sub>| 各ホストからKafka</sub>
+# At least once <sub>| Kafkaへのログ転送</sub>
 
 - 初めはfluentdでKafkaへの転送で構築していたが、at least onceを満たせないことが判明
 
@@ -201,7 +205,7 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 ---
 # At least once <sub>| Kafkaからの転送</sub>
 
-- データの処理が終わったoffsetをKafkaにcommit
+- HiveやHBaseへの経路は冗長構成
 - HDFS上のファイル操作もatomicに
 
 <div style='float:right; margin-left:32px; min-width:50%; background-repeat:no-repeat; height:100%; background-position-x:100%; background-image:url(images/architecture.png); background-size: 150%; box-sizing: border-box;'></div>
@@ -210,7 +214,7 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 # At least once <sub>| 長いログの対応</sub>
 
 - Kafkaのレコード長には上限がある
-- MySQLのスローログでは、1行が10MBを超えるケースもある
+- MySQLのスローログでは1行が10MBを超えるケースもある
 - Kafkaのレコードに、断片化されたログかのフラグを付与
 - Kafkaからログを取り出す時、再び結合
 
@@ -224,8 +228,8 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 
 ## スケーラビリティ
 
-- Kafkaのノードが死んでも、全体の転送は止まらない
-- ログ量が増えたら、Kafkaノードを増やしてスケール
+- 用途に応じて、様々なKafka Consumerを追加できた
+- 必要なサービスが増えたらKafka Consumerを追加できる
 
 ---
 # 苦労話 <sub>| 転送遅延</sub>
