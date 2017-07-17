@@ -2,18 +2,22 @@
 title: これはマークダウン
 ---
 
---- { "class": "title" }
+---
 # これはマークダウン
+: { "class": "title" }
+
 
 Ueokande
 
---- { "class": "outline" }
-
+---
 # Outline
+: { "class": "outline" }
+
 
 - Why?
 - How
 
+---
 # Why?
 
 - ぱわぽ辛い
@@ -22,7 +26,6 @@ Ueokande
 - マルチプラットフォーム
 
 ---
-
 # How
 
 - HTMLベース

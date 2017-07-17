@@ -54,7 +54,7 @@ module Middleman
       def preprocess(full_document)
         output = ""
         full_document.each_line do |line|
-          output += /\A---\s*{.*}\Z/.match(line) ? meta_hr(line) : line
+          output += /\A:\s*{.*}\Z/.match(line) ? page_meta(line) : line
         end
         output
       end
@@ -72,10 +72,13 @@ module Middleman
             current_page = new_page_element(doc)
             doc.add_child(current_page)
             ele.remove
-          elsif ele.class == Nokogiri::XML::Comment
-            attrs = JSON.parse(ele.content)
-            attrs.each{ |k,v| current_page[k] = v }
-            ele.remove
+          elsif ele.name == 'p'
+            if ele.children.first && ele.children.first.name  == 'x-page-meta'
+              meta = ele.children.first
+              meta.attributes.each{ |k,v| current_page[k] = v }
+              meta.remove
+              ele.remove if ele.children.length == 0
+            end
           else
             current_page.add_child(ele)
           end
@@ -89,9 +92,11 @@ module Middleman
 
       private
 
-      def meta_hr(line)
-        attrs = line.gsub(/\A---/, '')
-        "---\n<!-- #{attrs} -->\n"
+      def page_meta(line)
+        attrs = JSON.parse(line.gsub(/\A:/, ''))
+        doc = Nokogiri::XML("<x-page-meta></x-page-meta>")
+        attrs.each{ |k,v| doc.root[k] = v }
+        doc.root.to_html
       end
 
     end
