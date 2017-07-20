@@ -10,14 +10,22 @@ html {
 
 body {
   border: 0;
-  float: none !important;
   margin: 0 0 !important;
   overflow: visible;
   padding: 0;
+  transform: none !important;
+  position: relative;
+  top: 0;
+  left: 0;
+  transform-style: flat !important;
 }
 
 section {
-  visibility:visible !important;
-  position:relative !important;
-  page-break-after:always;
+  visibility :visible !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  margin: 0;
+  page-break-before: always;
+  page-break-after: avoid;
+  page-break-inside: avoid;
 }
