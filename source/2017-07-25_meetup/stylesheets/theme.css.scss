@@ -142,13 +142,13 @@ section.cybozucom {
   background-repeat: no-repeat;
   background-color: white;
   padding: 0;
+  padding-top: 60%;
 
   h1 {
     background-color: rgba(0, 0, 0, .8);
     padding: .8rem;
     bottom: 2rem;
     box-sizing: border-box;
-    margin-top: 60%;
     color: white;
   }
 }
@@ -156,14 +156,13 @@ section.cybozucom {
 section.damm {
   background-image: url("../images/sleeping_worker.jpg");
   background-size: cover;
-  padding: 0;
+  padding: 2rem;
 
   &:before {
     content:none
   }
 
   h1 {
-    margin: 2rem;
     font-size: 3rem;
     text-shadow: 0 0 16px black;
     font-family: mplus-1p-heavy;
@@ -180,6 +179,7 @@ section.damm {
     line-height: 1.2rem;
     position: absolute;
     bottom: 0;
+    left: 0;
     width: 100%;
     box-sizing: border-box;
     padding-right: .5rem;
