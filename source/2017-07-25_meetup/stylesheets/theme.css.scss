@@ -32,6 +32,16 @@ ul {
       margin-right:.5rem;
     }
   }
+
+  li ul li {
+    &:before {
+      content:"";
+      background-color:#E78647;
+      border-radius:0;
+      width:.4rem;
+      height:.4rem;
+    }
+  }
 }
 
 ol {

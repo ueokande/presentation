@@ -51,10 +51,10 @@ Cybozu Inc.
 # cybozu.comを支えるインフラ
 
 - 自社製データセンター
-- ホスト数（実機 + VM）: 1000程度
+- ホスト数（実機 + VM）: 1200程度
 - ログ量
   <span style='font-weight: bold'><span style='font-size:2rem'>20億</span> 行/day</span>,
-  <span style='font-weight: bold'><span style='font-size:2rem'>800</span> GB/day</span> くらい  
+  <span style='font-weight: bold'><span style='font-size:2rem'>800</span> GB/day</span> <br>
   （毎秒平均 23,000行 くらい）
 
 ---
@@ -238,7 +238,7 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 <img style='float:right; width:12rem; margin-left:1rem' src=images/kafka-definitive-guide.jpg>
 
 - ある日、Kafkaからの転送が大きく遅延した
-- 幸い本番環境と同じ環境を開発環境に構成してたために気付けた
+- 本番環境と同じ環境を開発環境に構成してたため、早期に気付けた
 - Kafkaのパラメータチューニングして解決
 
 ---
@@ -256,11 +256,17 @@ sleeping worker by reynermedia - flickr | <u>https://www.flickr.com/photos/89228
 # 新しいログ基盤のこれから
 
 ---
-# これからのログ基盤
+# これからやってゆきたこと
 
-## 可視化・解析
-- Redashでいい感じにHiveのクエリを可視化
-- ページビューとユーザデータを組合せて製品改善に役立てる
+## より良い製品づくりに役立てる
+
+- ユーザデータを可視化・解析組合せて製品改善に役立てる
+- 必要なログやデータを組み合わせて、障害調査を加速させる
+
+## 開発者意外も広く利用できる環境
+
+- 営業やPMも利用できる環境の用意
+- お客さんへのサポートやマーケティングを効率化させる
 
 ---
 # まとめ
