@@ -8,6 +8,9 @@ end
 
 set :markdown_engine_prefix, Middleman::Renderers
 set :markdown_engine, :redcarpet_presentation
+set :markdown, :fenced_code_blocks => true
+
+activate :syntax
 
 ready do
   sitemap.resources.select{ |r| r.parent && r.parent.page_id == 'index' }.each do |page|
