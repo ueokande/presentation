@@ -37,7 +37,7 @@ WebExtensions Meetup \#3, 2018-10-30
 <p class='pagenum'></p>
 
 - Vimでブラウザを操作できるWebExtensions
-- vimperator (XUL) が使えなくなったのがきっかけ
+- vimperator (XUL) が使えなくなったのが開発のきっかけ
 - +1,000 starts、+10,000ユーザー 🎉🎉🎉
 
 ---
@@ -168,7 +168,7 @@ describe('MyInjectionClass', () => {
 
 <p class='pagenum'></p>
 
-- webextensions-api-fake + sinon-chrome
+- webextensions-api-fake: browserオブジェクトのモック
 - Karma上でbrowserオブジェクトが使える
 
 <% code("javascript") do %>
@@ -284,7 +284,7 @@ describe("MyTabRepository", () => {
 <p class='pagenum'></p>
 
 - ambassadorの呼び出しては適当にラップ
-- ES7 async/awaitで人間の手続きに近い処理をコード化
+- ES7 async/awaitでユーザーの操作を手続き的に記述
 
 <div style='width:100%; position:absolute; left:0'>
 <% code("javascript") do %>
@@ -340,10 +340,10 @@ it('deletes tab by d', async () => {
 
 <p class='pagenum'></p>
 
+- ユニットテストを充実させてE2Eテストを軽減
+    - 本体コードもテストしやすいような構造に
 - CI/**CD**に力を入れたい
     - git tagを打ったら新しいバーションをリリースとか
-- ユニットテストを充実させてE2Eテストを軽減
-    - テストしやすいような構造に
 
 ---
 # まとめ
