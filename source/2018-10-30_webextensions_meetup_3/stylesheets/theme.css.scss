@@ -89,6 +89,11 @@ section {
   }
   .pagenum {
     color: #313A32;
+    right: 2rem;
+    top: 1.5rem;
+    line-height: 1rem;
+    font-size: 0.8rem;
+    position: absolute;
   }
 }
 
@@ -182,12 +187,3 @@ pre.highlight {
   line-height: 1.25rem;
   font-size: .8rem;
 }
-  
-.pagenum {
-  right: 2rem;
-  top: 1.5rem;
-  line-height: 1;
-  font-size: 0.8rem;
-  position: absolute;
-}
-
