@@ -1,0 +1,193 @@
+* {
+  margin:0;
+  padding:0
+}
+
+html {
+  font-size:24pt;
+  font-family: "mplus-1p";
+}
+
+body {
+  line-height: 2rem;
+  background-color: black;
+}
+
+ul {
+  list-style:none;
+  margin:0px 28px 32px;
+
+  li {
+    margin: 1rem 0;
+
+    &:before {
+      content:"";
+      width:.5rem;
+      height:.5rem;
+      display:inline-block;
+      background-color:#f7354f;
+      border-radius:50%;
+      margin-bottom:0.2ex;
+      margin-left:-24px;
+      margin-right:.5rem;
+    }
+  }
+
+  li ul li {
+    &:before {
+      content:"";
+      background-color:#E78647;
+      border-radius:0;
+      width:.4rem;
+      height:.4rem;
+    }
+  }
+}
+
+ol {
+  margin:20px 40px 50px;
+
+  li {
+    margin-top:20px;
+    margin-left:-12px;
+    margin-right:.5rem;
+  }
+}
+
+hr {
+  border:none;
+  border-top:1px solid #3a3a38;
+  margin:0 0 32px
+}
+
+section {
+  padding: 1.5rem 2rem;
+  overflow:hidden;
+  box-sizing:border-box;
+  background-color:#f9f6eb;
+  color: #313A32;
+
+  h1 {
+    font-size:1.8rem;
+    font-weight:bold;
+    margin-bottom:24px;
+    margin:0 0 2rem;
+    font-family: "mplus-1p-bold";
+    font-weight: normal;
+
+    sub {
+      vertical-align: baseline;
+      font-size: inherit;
+      font-family: "mplus-1p-regular";
+    }
+  }
+
+  h2 {
+    font-size:1.2rem;
+    margin:16px 0 8px;
+    line-height: 1rem;
+  }
+  .pagenum {
+    color: #313A32;
+  }
+}
+
+section.title {
+  background-color: #44546b;
+  color: white;
+  
+  h1 {
+    font-size: 2rem;
+    line-height: 2rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+
+  p {
+    text-align: right;
+    line-height: 1.5rem;
+  }
+
+}
+
+section.section {
+  background-color: #3F3F3F;
+  color: white;
+  
+  h1 {
+    font-size: 2rem;
+    line-height: 2rem;
+    margin-top: 8rem;
+    text-align: center;
+  }
+
+  h2 {
+    margin-top:0;
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+
+  p {
+    text-align: right;
+    line-height: 1rem;
+  }
+  .pagenum {
+    color: white;
+  }
+}
+
+section.whois {
+  background-color: #3F3F3F;
+  color: white;
+
+  h1 {
+    margin-top: 4rem;
+    margin-bottom: 0;
+  }
+  ul {
+    margin-top: 4rem;
+    li {
+      margin-top: 0;
+      margin-bottom: .2rem;
+    }
+  }
+  img.profile {
+    position: absolute;
+    right: -2rem;
+    bottom: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 0 16px white;
+    height: 16rem;
+  }
+  .pagenum {
+    color: white;
+  }
+}
+
+section.fullimage {
+  padding: 0;
+
+  h1 {
+    position: absolute;
+    background-color: #000000cc;
+    width: 100%;
+    bottom: 0rem;
+    padding: .5rem 1rem;
+    color: white;
+  }
+}
+
+pre.highlight {
+  padding: .2rem .5rem;
+  line-height: 1.25rem;
+  font-size: .8rem;
+}
+  
+.pagenum {
+  right: 2rem;
+  top: 1.5rem;
+  line-height: 1;
+  font-size: 0.8rem;
+  position: absolute;
+}
+

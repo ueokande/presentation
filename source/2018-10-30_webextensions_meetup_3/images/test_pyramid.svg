@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="480"
+   height="480"
+   viewBox="0 0 126.99999 127"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 2405546, 2018-03-11"
+   sodipodi:docname="test_pyramid.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="445.64026"
+     inkscape:cy="273.73795"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="3838"
+     inkscape:window-height="2138"
+     inkscape:window-x="0"
+     inkscape:window-y="20"
+     inkscape:window-maximized="1"
+     inkscape:measure-start="0,0"
+     inkscape:measure-end="0,0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid815" />
+    <sodipodi:guide
+       position="126.99999,100.54166"
+       orientation="1,0"
+       id="guide817"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="63.499997,150.81249"
+       orientation="1,0"
+       id="guide819"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-169.99999)">
+    <rect
+       style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect839"
+       width="126.99998"
+       height="126.99999"
+       x="127.00002"
+       y="169.99998"
+       inkscape:export-xdpi="81.07"
+       inkscape:export-ydpi="81.07" />
+    <path
+       style="fill:#ff5555;fill-rule:evenodd;stroke:none;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 393.33203 276.66602 L 86.041016 276.66602 L 9.0605469 410 L 470 410 L 393.33203 276.66602 z "
+       id="path837"
+       transform="matrix(0.26458332,0,0,0.26458332,0,169.99999)" />
+    <path
+       style="fill:#e2e3db;fill-rule:evenodd;stroke:none;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 316.66797 143.33398 L 163.01953 143.33398 L 86.041016 276.66602 L 393.33203 276.66602 L 316.66797 143.33398 z "
+       id="path835"
+       transform="matrix(0.26458332,0,0,0.26458332,0,169.99999)" />
+    <path
+       style="fill:#c4c8b7;fill-rule:evenodd;stroke:none;stroke-width:1.00000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 240 10 L 163.01953 143.33398 L 316.66797 143.33398 L 240 10 z "
+       id="path821"
+       transform="matrix(0.26458332,0,0,0.26458332,0,169.99999)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:8.46666633px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="63.51228"
+       y="194.03"
+       id="text841"><tspan
+         sodipodi:role="line"
+         id="tspan839"
+         x="63.51228"
+         y="194.03"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666633px;line-height:100%;font-family:'M+ 1c';-inkscape-font-specification:'M+ 1c Bold';text-align:center;text-anchor:middle;stroke-width:0.26458332px;fill:#808080;">E2E</tspan><tspan
+         sodipodi:role="line"
+         x="63.51228"
+         y="201.08556"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666633px;line-height:100%;font-family:'M+ 1c';-inkscape-font-specification:'M+ 1c Bold';text-align:center;text-anchor:middle;stroke-width:0.26458332px;fill:#808080;"
+         id="tspan843">テスト</tspan></text>
+    <text
+       id="text849"
+       y="263.78732"
+       x="63.51228"
+       style="font-style:normal;font-weight:normal;font-size:8.46666633px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       xml:space="preserve"><tspan
+         id="tspan847"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666633px;line-height:100%;font-family:'M+ 1c';-inkscape-font-specification:'M+ 1c Bold';text-align:center;text-anchor:middle;stroke-width:0.26458332px;fill:#ffffff;"
+         y="263.78732"
+         x="63.51228"
+         sodipodi:role="line">ユニットテスト</tspan></text>
+    <path
+       id="path823"
+       d="m 231.31765,243.2012 h -81.30407 l -20.36775,35.27795 h 121.95689 z"
+       style="fill:#c8c4b7;fill-rule:evenodd;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:connector-curvature="0" />
+    <path
+       id="path825"
+       d="m 211.03362,207.92377 h -40.65281 l -20.36723,35.27743 h 81.30407 z"
+       style="fill:#e2e3db;fill-rule:evenodd;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:connector-curvature="0" />
+    <path
+       id="path827"
+       d="m 190.74856,172.64582 -20.36775,35.27795 h 40.65281 z"
+       style="fill:#0088aa;fill-rule:evenodd;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:connector-curvature="0" />
+    <text
+       id="text833"
+       y="194.03"
+       x="190.76083"
+       style="font-style:normal;font-weight:normal;font-size:5.64444399px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666633px;line-height:100%;font-family:'M+ 1c';-inkscape-font-specification:'M+ 1c Bold';text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.26458332px"
+         y="194.03"
+         x="190.76083"
+         id="tspan829"
+         sodipodi:role="line">E2E</tspan><tspan
+         id="tspan831"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666633px;line-height:100%;font-family:'M+ 1c';-inkscape-font-specification:'M+ 1c Bold';text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.26458332px"
+         y="201.08556"
+         x="190.76083"
+         sodipodi:role="line">テスト</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:8.46666633px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="190.76083"
+       y="263.78732"
+       id="text837"><tspan
+         sodipodi:role="line"
+         x="190.76083"
+         y="263.78732"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666633px;line-height:100%;font-family:'M+ 1c';-inkscape-font-specification:'M+ 1c Bold';text-align:center;text-anchor:middle;fill:#808080;stroke-width:0.26458332px;fill-opacity:1;"
+         id="tspan835">ユニットテスト</tspan></text>
+    <rect
+       inkscape:export-ydpi="81.07"
+       inkscape:export-xdpi="81.07"
+       y="169.99998"
+       x="253.99998"
+       height="126.99999"
+       width="126.99998"
+       id="rect843"
+       style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:#ff5555;fill-rule:evenodd;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+       d="M 358.31762,243.20121 H 277.01355 L 256.6458,278.47916 H 378.60269 Z"
+       id="path845" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:#e2e3db;fill-rule:evenodd;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 338.03359,207.92378 h -40.65281 l -20.36723,35.27743 h 81.30407 z"
+       id="path847" />
+    <path
+       inkscape:connector-curvature="0"
+       style="fill:#0088aa;fill-rule:evenodd;stroke:none;stroke-width:0.26458332;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 317.74853,172.64583 -20.36775,35.27795 h 40.65281 z"
+       id="path849" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64444399px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="317.7608"
+       y="194.03"
+       id="text855"><tspan
+         sodipodi:role="line"
+         id="tspan851"
+         x="317.7608"
+         y="194.03"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666622px;line-height:100%;font-family:'M+ 1c';-inkscape-font-specification:'M+ 1c Bold';text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.26458332px">E2E</tspan><tspan
+         sodipodi:role="line"
+         x="317.7608"
+         y="203.37288"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666622px;line-height:100%;font-family:'M+ 1c';-inkscape-font-specification:'M+ 1c Bold';text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.26458332px"
+         id="tspan853">テスト</tspan></text>
+    <text
+       id="text859"
+       y="263.78732"
+       x="317.7608"
+       style="font-style:normal;font-weight:normal;font-size:8.46666622px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       xml:space="preserve"><tspan
+         id="tspan857"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:8.46666622px;line-height:100%;font-family:'M+ 1c';-inkscape-font-specification:'M+ 1c Bold';text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:0.26458332px;"
+         y="263.78732"
+         x="317.7608"
+         sodipodi:role="line">ユニットテスト</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,352 @@
+---
+title: WebExtensionsとテスト
+---
+
+---
+# WebExtensionsとテスト
+: { "class": "title" }
+
+## 
+
+WebExtensions Meetup \#3, 2018-10-30  
+@ueokande
+
+---
+: { "class": "whois" }
+
+<p class='pagenum'></p>
+
+# Shin'ya Ueoka
+## @ueokande
+
+- WebExtensions歴1年ちょい
+- Vim Vixen <img style='height:1rem' src='images/vimvixen_icon.png'></img> つくってます
+
+<img class='profile' src="images/profile.jpg"></img>
+
+---
+: { "class": "fullimage" }
+
+# Vim Vixen
+
+<img src="images/vimvixen_screenshot.png"></img>
+
+---
+# Vim Vixen
+
+<p class='pagenum'></p>
+
+- Vimでブラウザを操作できるWebExtensions
+- +10,000ユーザー 🎉🎉🎉
+
+---
+# 目次
+
+<p class='pagenum'></p>
+
+- WebExnteionsのユニットテスト
+- WebExnteionsのE2Eテスト
+- まとめ
+
+---
+# Vim Vixenの開発環境
+
+<p class='pagenum'></p>
+
+- 本体コード5,000行 + テストコード3,000行くらい
+- BabelでES7をトランスパイル
+- webpackでsingle js化
+- CircleCIで継続的にlint + **テスト**
+
+---
+# なんでテストを書くんだっけ？
+
+<p class='pagenum'></p>
+
+- テストの自動化による効率化
+- コード品質の向上
+  - テスタビリティが高いとメンテナンス性もよい
+- リグレッションの早期発見
+
+---
+# ユニットテスト
+
+<img style='float:right; margin-left: -100px' src="images/pyramid_unit.svg"></img>
+
+- クラス・メソッド単位で実行
+- 依存メソッドはモック化したり
+- 一番高速なテスト手法で、<br>テストケースも追加しやすい
+
+---
+# E2Eテスト
+
+<img style='float:right; margin-left: -100px' src="images/pyramid_e2e.svg"></img>
+
+- ユーザの操作と最も近いテスト
+- 一般的に高コストで遅い
+- 気をつけないと不安定な<br>テストになることもしばしば
+
+---
+# （理想の）テストピラミッド
+
+<img style='float:right' src="images/pyramid_all.svg"></img>
+
+- ユニットテストの方が<br>費用対効果が高い
+- ユニットテストの比率を<br>大きくなるよう配分<br>するのが理想
+
+
+---
+# Vim Vixenのユニットテスト
+: { "class": "section" }
+
+<p class='pagenum'></p>
+
+---
+# Vim Vixenのユニットテスト
+
+<p class='pagenum'></p>
+
+- WebExtensionsはフロントエンドの技術と親和性が高い
+- JavaScriptのユニットテストのよくある構成で実行
+  - テストフレームワークに**Mochar**
+  - テストランナーに **Karma** を使ってFirefoxを起動
+
+---
+# ビジネスロジックのテスト
+
+- ピュアなビジネスロジックはWebExtensions APIや<br>DOM操作がない
+- 通常のJavaScriptとしてテストできる
+- ビジネスロジックを切り出すために設計する
+  - DDD、Clean Architecture ...
+
+---
+# DOMアクセスのテスト
+
+<p class='pagenum'></p>
+
+- content scriptではDOMアクセスが多い
+- karma-html2js-preprocessor: Karma上でHTMLをロード
+  - HTMLファイルをJavaScriptの文字列として格納
+  - `window.__html__` オブジェクトでアクセス
+
+<% code("javascript") do %>
+document.body.innerHTML = __html__['testcase1.html'];
+<% end %>
+
+
+---
+# 利用例
+
+<p class='pagenum'></p>
+
+
+<div style='width:100%; position:absolute; left:0'>
+<% code("javascript") do %>
+describe('FollowComponent', () => {
+  beforeEach(() => {
+    // render HTML from a static HTML file
+    document.body.innerHTML = __html__['test/content/case1.html'];
+  });
+
+  it('injects four elements', () => {
+    let sut = new MyClass(); // system under test
+    sut.injectElements();
+
+    let es = window.document.querySelector(".injected")
+    expect(es).to.have.lengthOf(4);
+  });
+});
+<% end %>
+</div>
+
+
+---
+# browserオブジェクトのモック
+
+<p class='pagenum'></p>
+
+- webextensions-api-fake + sinon-chrome
+- Karma上でbrowserオブジェクトが使える
+
+<% code("javascript") do %>
+const browserFake = require('webextensions-api-fake');
+global.browser = browserFake();
+<% end %>
+
+---
+# 利用例
+
+<p class='pagenum'></p>
+
+<div style='width:100%; position:absolute; left:0'>
+<% code("javascript") do %>
+const browserFake = require('webextensions-api-fake');
+
+describe("MyTabRepository", () => {
+  beforeEach(async() => {
+    // set fake browser to global variable
+    global.browser = browserFake();
+  });
+
+  it('should get last created tab', async() => {
+    const created = await browser.tabs.create({});
+    const tab = await sut.lastCreatedTab();
+    expect(tab.id).to.equal(created.id);
+  });
+});
+<% end %>
+</div>
+
+
+---
+# E2Eテスト
+: { "class": "section" }
+
+<p class='pagenum'></p>
+
+---
+# Vim Vixenのリリースフロー
+
+- 受け入れ条件を元に100個以上の試験項目
+- リグレッションが怖いのでリリース毎に全て試験
+- Pull Requestの本文にチェックリスト化して手動テスト
+
+<p class='pagenum'></p>
+
+---
+: { "class": "fullimage" }
+
+# 
+
+<img src="images/github_test.png"></img>
+
+---
+# E2Eテストの自動化
+
+<p class='pagenum'></p>
+
+- リリース毎に試験項目は増え続ける
+- 毎リリース100以上の試験をするのは辛い<br>
+- E2Eテストも自動化だ！
+
+---
+# 自動化の方針
+
+<p class='pagenum'></p>
+
+- ビルド済みのVim Vixenを試験
+  - Vim Vixen本体にテストコードを加えない
+- ユーザーと近い操作で入力と結果を観測
+
+---
+# Vim VixenのE2E試験の仕組み
+<p class='pagenum'></p>
+
+- テスト用の「ambassador」アドオンを作成
+- テストコードからメッセージ経由でキー入力や結果を観測
+- KarmaではVim VixenとambassadorアドオンをロードしたFirefoxを起動
+
+---
+# ambassadorアドオン (1/2)
+
+<p class='pagenum'></p>
+
+- テストコードからタブ情報や別タブにキーイベントを送信
+
+<img style='width: 100%; position:absolute; left:0' src="images/e2e_architecture1.svg"></img>
+
+---
+# ambassadorアドオン (2/2)
+
+<p class='pagenum'></p>
+
+- 別タブの観測もメッセージ経由
+
+<img style='width: 100%; position:absolute; left:0' src="images/e2e_architecture2.svg"></img>
+
+---
+# ambassadorアドオンの実行
+
+<p class='pagenum'></p>
+
+- web-extで実行
+  - web-extで複数アドオンをロードできるよう改造
+  - Karmaで実行できるようテストランナーを自作
+
+<img style='display:block; margin: 0 auto' src="images/karma-webext.svg"></img>
+
+---
+# E2Eテストのテストケース例
+
+<p class='pagenum'></p>
+
+- ambassadorの呼び出しては適当にラップ
+- ES7 async/awaitで人間の手続きに近い処理をコード化
+
+<div style='width:100%; position:absolute; left:0'>
+<% code("javascript") do %>
+it('deletes tab by d', async () => {
+  let tab = await tabs.create(targetWindow.id, CLIENT_URL);
+  let before = await windows.get(targetWindow.id);
+  await keys.press(tab.id, 'd');
+
+  let actual = await windows.get(targetWindow.id);
+  expect(actual.tabs).to.have.lengthOf(before.tabs.length - 1);
+});
+<% end %>
+</div>
+
+---
+# CircleCI
+
+<p class='pagenum'></p>
+
+<img style='display:block;float:right; margin:0 -2rem; width:50%' src='images/circleci.png'>
+
+- git push毎にテストを流す
+  - lint
+  - ユニットテスト
+  - E2Eテスト
+- パスしたPull Requestをマージ
+
+---
+# デモ
+: { "class": "section" }
+
+<p class='pagenum'></p>
+
+---
+: { "class": "section" }
+
+# これからのVim Vixenのテスト
+
+<p class='pagenum'></p>
+
+---
+# ambassadorアドオンの限界
+
+<p class='pagenum'></p>
+
+- 45/163ケースしか自動化できてない
+- 他アドオンのアクセスできない領域
+  - option_ui, storage, browserAction, ...
+- 表示（スタイル）のリグレッション検出
+
+---
+# Vim Vixenのこれから
+
+<p class='pagenum'></p>
+
+- CI/**CD**に力を入れたい
+    - git tagを打ったら新しいバーションをリリースとか
+- ユニットテストを充実させてE2Eテストを軽減
+    - テストしやすいような構造に
+
+---
+# まとめ
+
+<p class='pagenum'></p>
+
+- Vim Vixenで取り組んでるテストについて紹介
+- 機能追加・メンテナンスで怖くないようある程度自動化
+- これからも品質を維持しつつ機能追加も頑張るぞい！ 💪

@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'mplus-1p-thin';
+  src: url(mplus-1p-thin.ttf);
+}
+@font-face {
+  font-family: 'mplus-1p-light';
+  src: url(mplus-1p-light.ttf);
+}
+@font-face {
+  font-family: 'mplus-1p-regular';
+  src: url(mplus-1p-regular.ttf);
+}
+@font-face {
+  font-family: 'mplus-1p-medium';
+  src: url(mplus-1p-medium.ttf);
+}
+@font-face {
+  font-family: 'mplus-1p-bold';
+  src: url(mplus-1p-bold.ttf);
+}
+@font-face {
+  font-family: 'mplus-1p-heavy';
+  src: url(mplus-1p-heavy.ttf);
+}
+@font-face {
+  font-family: 'mplus-1p-black';
+  src: url(mplus-1p-black.ttf);
+}
+@font-face {
+  font-family: 'mplus-1p';
+  src: url(mplus-1p-light.ttf);
+  font-weight:normal;
+}
+@font-face {
+  font-family: 'mplus-1p';
+  src: url(mplus-1p-bold.ttf);
+  font-weight:bold;
+}
