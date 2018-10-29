@@ -37,15 +37,16 @@ WebExtensions Meetup \#3, 2018-10-30
 <p class='pagenum'></p>
 
 - Vimでブラウザを操作できるWebExtensions
-- +10,000ユーザー 🎉🎉🎉
+- vimperator (XUL) が使えなくなったのがきっかけ
+- +1,000 starts、+10,000ユーザー 🎉🎉🎉🎉🎉
 
 ---
 # 目次
 
 <p class='pagenum'></p>
 
-- WebExnteionsのユニットテスト
-- WebExnteionsのE2Eテスト
+- WebExnteionsのテスト
+- Vim Vixenのユニットテスト・E2Eテストの取り組み
 - まとめ
 
 ---
@@ -71,9 +72,9 @@ WebExtensions Meetup \#3, 2018-10-30
 ---
 # ユニットテスト
 
-<img style='float:right; margin-left: -100px' src="images/pyramid_unit.svg"></img>
+<img style='float:right; margin-left: -200px' src="images/pyramid_unit.svg"></img>
 
-- クラス・メソッド単位で実行
+- (単一の) クラス・メソッドが対象
 - 依存メソッドはモック化したり
 - 一番高速なテスト手法で、<br>テストケースも追加しやすい
 
@@ -84,7 +85,7 @@ WebExtensions Meetup \#3, 2018-10-30
 
 - ユーザの操作と最も近いテスト
 - 一般的に高コストで遅い
-- 気をつけないと不安定な<br>テストになることもしばしば
+- 気をつけないと不安定なテスト<br>になることもしばしば
 
 ---
 # （理想の）テストピラミッド
@@ -108,11 +109,13 @@ WebExtensions Meetup \#3, 2018-10-30
 
 - WebExtensionsはフロントエンドの技術と親和性が高い
 - JavaScriptのユニットテストのよくある構成で実行
-  - テストフレームワークに**Mochar**
+  - テストフレームワークに**Mocha**
   - テストランナーに **Karma** を使ってFirefoxを起動
 
 ---
 # ビジネスロジックのテスト
+
+<p class='pagenum'></p>
 
 - ピュアなビジネスロジックはWebExtensions APIや<br>DOM操作がない
 - 通常のJavaScriptとしてテストできる
@@ -142,18 +145,18 @@ document.body.innerHTML = __html__['testcase1.html'];
 
 <div style='width:100%; position:absolute; left:0'>
 <% code("javascript") do %>
-describe('FollowComponent', () => {
+describe('MyInjectionClass', () => {
   beforeEach(() => {
-    // render HTML from a static HTML file
-    document.body.innerHTML = __html__['test/content/case1.html'];
+    // render HTML from a static file
+    document.body.innerHTML = __html__['testcase1.html'];
   });
 
-  it('injects four elements', () => {
-    let sut = new MyClass(); // system under test
+  it('injects three elements', () => {
+    let sut = new MyInjectionClass(); // system under test
     sut.injectElements();
 
     let es = window.document.querySelector(".injected")
-    expect(es).to.have.lengthOf(4);
+    expect(es).to.have.lengthOf(3);
   });
 });
 <% end %>
@@ -349,4 +352,5 @@ it('deletes tab by d', async () => {
 
 - Vim Vixenで取り組んでるテストについて紹介
 - 機能追加・メンテナンスで怖くないようある程度自動化
-- これからも品質を維持しつつ機能追加も頑張るぞい！ 💪
+- WebExtensionsはフロントエンドの技術と親和性が高い
+- Vim Vixenは品質を維持しつつ機能追加も頑張るぞい 💪
