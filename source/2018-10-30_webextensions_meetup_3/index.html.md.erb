@@ -159,7 +159,7 @@ describe('MyInjectionClass', () => {
 
   it('injects three elements', () => {
     let sut = new MyInjectionClass(); // system under test
-    sut.injectElements();
+    sut.injectElements(window);
 
     let es = window.document.querySelector(".injected")
     expect(es).to.have.lengthOf(3);
@@ -174,12 +174,12 @@ describe('MyInjectionClass', () => {
 
 <p class='pagenum'></p>
 
-- webextensions-api-fake: browserオブジェクトのモック
+- webextensions-api-fake: browserオブジェクトをモック
 - Karma上でbrowserオブジェクトが使える
 
 <% code("javascript") do %>
 const browserFake = require('webextensions-api-fake');
-global.browser = browserFake();
+const browser = browserFake();
 <% end %>
 
 ---
@@ -218,7 +218,7 @@ describe("MyTabRepository", () => {
 
 - 受け入れ条件を元に100個以上の試験項目
 - リグレッションが怖いのでリリース毎に全て試験
-- Pull Requestの本文にチェックリスト化して手動テスト
+- Pull Requestの本文にチェックリスト化して**手動**テスト
 
 <p class='pagenum'></p>
 
@@ -251,7 +251,7 @@ describe("MyTabRepository", () => {
 # Vim VixenのE2E試験の仕組み
 <p class='pagenum'></p>
 
-- テスト用の「ambassador」アドオンを作成
+- テスト用の**「ambassador」**アドオンを作成
 - テストコードからメッセージ経由でキー入力や結果を観測
 - KarmaではVim VixenとambassadorアドオンをロードしたFirefoxを起動
 
@@ -279,8 +279,8 @@ describe("MyTabRepository", () => {
 <p class='pagenum'></p>
 
 - web-extで実行
-  - web-extで複数アドオンをロードできるよう改造
-  - Karmaで実行できるようテストランナーを自作
+- 複数アドオンをロードできるようweb-extを改造
+- Karmaでweb-ext用テストランナーを自作
 
 <img style='display:block; margin: 0 auto' src="images/karma-webext.svg"></img>
 
@@ -289,7 +289,7 @@ describe("MyTabRepository", () => {
 
 <p class='pagenum'></p>
 
-- ambassadorの呼び出しては適当にラップ
+- ambassadorとの通信は適当にラップ
 - ES7 async/awaitでユーザーの操作を手続き的に記述
 
 <div style='width:100%; position:absolute; left:0'>
@@ -357,6 +357,6 @@ it('deletes tab by d', async () => {
 <p class='pagenum'></p>
 
 - Vim Vixenで取り組んでるテストについて紹介
-- 機能追加・メンテナンスで怖くないようある程度自動化
+- メンテナンスで怖くないようテストを書く
 - WebExtensionsはフロントエンドの技術と親和性が高い
 - Vim Vixenは品質を維持しつつ機能追加も頑張るぞい 💪
